@@ -74,7 +74,7 @@
 			raio.onchange();
 			getLocation();
 			function getLocation() {
-			    if (navigator.geolocation) {
+			    if (navigator && navigator.geolocation) {
 			        navigator.geolocation.getCurrentPosition(test);
 			    } else { 
 			        x.innerHTML = "Geolocation is not supported by this browser.";
@@ -148,6 +148,20 @@
 
 			    return geohash;
 			};
+			$(document).ready(function() {
+			    // Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
+			    $(".gllpLatlonPicker").each(function() {
+			      $obj = $(document).gMapsLatLonPicker();
+
+			      $obj.params.strings.markerText = "Drag this Marker (example edit)";
+
+			      $obj.params.displayError = function(message) {
+			        console.log("MAPS ERROR: " + message); // instead of alert()
+			      };
+
+			      $obj.init( $(this) );
+			    });
+			  });
 		</script>
 	</body>
 </html>
