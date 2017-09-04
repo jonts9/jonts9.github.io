@@ -81,11 +81,9 @@
 			    }
 			}
 			function test(position){
-				console.log('$(".gllpLatitude").val(position.coords.latitude);');
 				$(".gllpLatitude").val(position.coords.latitude);
-				console.log('$(".gllpLongitude").val(position.coords.longitude);');
 				$(".gllpLongitude").val(position.coords.longitude);
-				$("gllpLatlonPicker").trigger("location_changed", $("gllpLatlonPicker"));
+				$(document).trigger("gllp_update_fields");
 				document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
 			}
 			var Geohash = {};
