@@ -55,7 +55,7 @@
 				data: frm.serialize(),
 				success: function (data) {
 					console.log("text")
-					$("#resultado").text(data);
+					$("#resultado").html(data);
 				},
 				error: function (data) {
 					console.log('An error occurred.');
