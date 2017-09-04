@@ -81,7 +81,9 @@
 			    }
 			}
 			function test(position){
+				console.log('$(".gllpLatitude").value(position.coords.latitude);');
 				$(".gllpLatitude").value(position.coords.latitude);
+				console.log('$(".gllpLongitude").value(position.coords.longitude);');
 				$(".gllpLongitude").value(position.coords.longitude);
 				document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
 			}
