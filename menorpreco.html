@@ -85,6 +85,7 @@
 				$(".gllpLatitude").val(position.coords.latitude);
 				console.log('$(".gllpLongitude").val(position.coords.longitude);');
 				$(".gllpLongitude").val(position.coords.longitude);
+				$("gllpLatlonPicker").trigger("location_changed", null);
 				document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
 			}
 			var Geohash = {};
