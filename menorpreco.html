@@ -41,6 +41,8 @@
 			</div>
 			<input type="submit" />
 		</form>
+		<div id="resultado">asdf</div>
+		<div id="resultadoJson">json</div>
 		<script>
 		var frm = $('#frmPesquisa');
 		frm.submit(function (e) {
@@ -52,7 +54,8 @@
 				url: frm.attr('action'),
 				data: frm.serialize(),
 				success: function (data) {
-					console.log(data);
+					console.log("text")
+					$("#resultado").text(data);
 				},
 				error: function (data) {
 					console.log('An error occurred.');
