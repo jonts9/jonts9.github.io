@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  background-color:white;
+  position:relative;
+  margin:0 0 0 0;
+  padding:0 0 0 0;
+}
+#animate {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: black;
+}
+#circle {
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	border:1px solid black;
+  position: absolute;
+}
+</style>
+<body>
+<div id="circle"></div>
+<div id ="animate"></div>
+<script>
+function myMove() {
+	var animate = document.getElementById("animate");
+	// how far around the circle the ball is, in radians
+	var angle = 0;
+
+	// how big the circle is
+	var radius = 50;
+	
+	var circ = Math.PI*2;
+
+	var size = windowSize();
+	// the center of the canvas
+	var centerX = size.width/2;
+	var centerY = size.height/2;
+	
+	var circle = document.getElementById("circle");
+	circle.style.top = (centerY-100) + 'px';
+	circle.style.left = (centerX-100) + 'px';
+
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (false) {
+			clearInterval(id);
+		} else {
+			// calculate coordinates of the ball using sin and cosine
+			var x = Math.sin(angle) * radius;
+			var y = Math.cos(angle) * radius;
+		
+			//// since the circle is naturally centered at (0,0)
+			//// we must add centerX and centerY
+			//fill(cor1, cor2, cor3);
+			//animate.style.backgroundColor = 'rgb('+cor1+', '+cor2+', '+cor3+')';
+			//ellipse(x + centerX, y + centerY, 40, 40);
+			animate.style.top = (y+centerY-50) + 'px'; 
+			animate.style.left = (x+centerX-50) + 'px';
+
+			// move the ball forward
+			angle = (angle + 0.01)%(circ);
+			// make the circle bigger
+			//radius = radius + 0.1;
+			//console.log(size());
+		}
+	}
+}
+function windowSize() {
+    var myWidth = 0, myHeight = 0;
+    if(typeof(window.innerWidth) == 'number') {
+        // Non-IE
+        myWidth = window.innerWidth;
+        myHeight = window.innerHeight;
+    } 
+    else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+        // IE 6+ in 'standards compliant mode'
+        myWidth = document.documentElement.clientWidth;
+        myHeight = document.documentElement.clientHeight;
+    } 
+    else if(document.body && (document.body.clientWidth || document.body.clientHeight)) {
+        // IE 4 compatible
+        myWidth = document.body.clientWidth;
+        myHeight = document.body.clientHeight;
+    }
+
+    //window.alert( 'Width = ' + myWidth );
+    //window.alert( 'Height = ' + myHeight );
+    return {width:myWidth,height:myHeight};
+}
+myMove();
+</script>
+</body>
+</html>
