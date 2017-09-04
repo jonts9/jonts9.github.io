@@ -54,7 +54,7 @@
 				url: frm.attr('action'),
 				data: frm.serialize(),
 				success: function (data) {
-					console.log("text");
+					console.log(data);
 					$("#resultado").html(data);
 				},
 				error: function (data) {
