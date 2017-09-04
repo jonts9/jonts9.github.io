@@ -41,8 +41,12 @@
 			</div>
 			<input type="submit" />
 		</form>
+<<<<<<< HEAD
 		<div id="resultado">asdf</div>
 		<div id="resultadoJson">resultadoJson</div>
+=======
+		<div id="resultado"></div>
+>>>>>>> branch 'master' of https://github.com/jonts9/jonts9.github.io.git
 		<script>
 		var frm = $('#frmPesquisa');
 		frm.submit(function (e) {
@@ -54,8 +58,12 @@
 				url: frm.attr('action'),
 				data: frm.serialize(),
 				success: function (data) {
+<<<<<<< HEAD
 					console.log("text")
 					$("#resultado").text(data);
+=======
+					$("#resultado").html(data);
+>>>>>>> branch 'master' of https://github.com/jonts9/jonts9.github.io.git
 				},
 				error: function (data) {
 					console.log('An error occurred.');
