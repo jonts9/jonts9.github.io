@@ -81,6 +81,8 @@
 			    }
 			}
 			function test(position){
+				$(".gllpLatitude").value(position.coords.latitude);
+				$(".gllpLongitude").value(position.coords.longitude);
 				document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
 			}
 			var Geohash = {};
