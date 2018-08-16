@@ -1,7 +1,4 @@
-<header>
-Things to Do
-============
-</header>
+% Things to Do
 ## Página de teste de markdown com html
 pequeno teste
 
