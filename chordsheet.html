@@ -1,0 +1,71 @@
+<html>
+  <head>
+   <meta charset="UTF-8">
+   <link rel="stylesheet" type="text/css" href="css/chordsheet.css">
+   <script src="js/chordsheet.js"></script> 
+  </head>
+  <body>
+    <div id="parametros" class="divTable" style="display:none;">
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <label for="titulo">Título</label>
+        </div>
+        <div class="divTableCell">
+          <input id="titulo" type="text" placeholder="Título" />
+        </div>
+      </div>
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <label for="subtitulo">Subtítulo</label>
+        </div>
+        <div class="divTableCell">
+          <input id="subtitulo" type="text" placeholder="Subtítulo" />
+        </div>
+      </div>
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <label for="tom">Tom</label>
+        </div>
+        <div class="divTableCell">
+          <select id="tom">
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="D#">D#</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="E#">E#</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+            <option value="Ab">Ab</option>
+            <option value="A">A</option>
+            <option value="A#">A#</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+          </select>
+        </div>
+      </div>
+      <div class="divTableRow">
+        <div class="divTableCell">
+          <label for="compassosPorLinha">Compassos</label>
+        </div>
+        <div class="divTableCell">
+          <input id="compassosPorLinha" value="4" type="number" min="4" max="16" step="1" />
+        </div>
+      </div>
+    </div>
+    <div>
+      <textarea id="chordIn" onkeyup="processar()"></textarea>
+    </div>
+    <div id="divChordOut">
+      <textarea id="chordOut"></textarea>
+    </div>
+    <div id="divOutHtml" class="divTable">
+      
+    </div>
+  </body>
+</html>
