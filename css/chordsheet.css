@@ -1,0 +1,27 @@
+.divTable{
+	display: table;
+  table-layout: fixed;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableCell {
+	display: table-cell;
+}
+.acorde {
+  text-align: center;
+  width: 10%;
+}
+.barra {
+  width: 1%;
+}
+.comentario {
+  margin-bottom: 5px;
+}
+.barra, .acorde {
+  padding-right: 5px;
+}
+pre {
+  font-family: inherit;
+  font-size: inherit;
+}
