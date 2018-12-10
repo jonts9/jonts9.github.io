@@ -25,3 +25,10 @@ pre {
   font-family: inherit;
   font-size: inherit;
 }
+@font-face {
+    font-family: "My Custom Font";
+    src: url(Bravura.woff) format("truetype");
+}
+pre.customfont { 
+    font-family: "My Custom Font", Verdana, Tahoma;
+}
