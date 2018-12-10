@@ -26,9 +26,9 @@ pre {
   font-size: inherit;
 }
 @font-face {
-  font-family: Bravura;
-  src: url(../Bravura.woff);
+  font-family: Boogaloo;
+  src: url(../Boogaloo.woff);
 }
 pre { 
-    font-family: "Bravura";
+    font-family: "Boogaloo";
 }
