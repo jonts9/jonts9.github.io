@@ -26,9 +26,9 @@ pre {
   font-size: inherit;
 }
 @font-face {
-    font-family: "Bravura";
-    src: url(../Bravura.woff) format("truetype");
+  font-family: Bravura;
+  src: url(../Bravura.woff);
 }
-pre.customfont { 
-    font-family: "Bravura", Verdana, Tahoma;
+pre { 
+    font-family: "Bravura";
 }
