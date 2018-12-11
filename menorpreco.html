@@ -1,49 +1,106 @@
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjALGH_a2toojMeUDRbFIdNDgjAmEIFjU"></script>
-		<link rel="stylesheet" type="text/css" href="//./css/jquery-gmaps-latlon-picker.css"/>
-		<link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
-  		<script src="//./js/jquery-gmaps-latlon-picker.js"></script>
-  		<script src="js/jquery-gmaps-latlon-picker.js"></script>
-	</head>
-	<body>
-		<form id="frmPesquisa" action="https://menorpreco.notaparana.pr.gov.br/api/v1/produtos" method="get">
-			<div>
-				<label for="termo">Pesquisar:</label>
-				<input type="text" name="termo" id="termo"/>
-			</div>
-			<div>
-				<label for="raio">Raio:</label>
-				<input type="range" min="1" max="20" name="raio" id="raio" value="1"
-				    oninput="displayRaio.innerText=value+'Km'" onchange="displayRaio.innerText=value+'Km'">
-				<span id="displayRaio"></span>
-			</div>
-			<div>
-				<label for="local">Local:</label>
-				<input type="text" name="local" id="local" />
-			</div>
-			<div>
-				<fieldset class="gllpLatlonPicker" id="custom_id">
-					<input type="text" class="gllpSearchField">
-					<input type="button" class="gllpSearchButton" value="search">
-					<div class="gllpMap">Google Maps</div>
-					<input type="hidden" class="gllpLatitude" value="-25.429722" />
-					<input type="hidden" class="gllpLongitude" value="-49.271944" />
-					<input type="hidden" class="gllpZoom" value="12" />
-				</fieldset> 
-			</div>
-			<div>
-				<input type="range" min="1" max="6" name="data" id="data" value="1"
-				    oninput="trataData()" onchange="trataData()">
-				<span id="displayData"></span>
-			</div>
-			<input type="submit" />
-		</form>
-		<div id="resultado">asdf</div>
-		<div id="resultadoJson">resultadoJson</div>
-		<script>
+<head>
+<meta charset="UTF-8" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjALGH_a2toojMeUDRbFIdNDgjAmEIFjU"></script>
+<link rel="stylesheet" type="text/css"
+	href="//./css/jquery-gmaps-latlon-picker.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/jquery-gmaps-latlon-picker.css" />
+<script src="//./js/jquery-gmaps-latlon-picker.js"></script>
+<script src="js/jquery-gmaps-latlon-picker.js"></script>
+</head>
+<body>
+	<form id="frmPesquisa"
+		action="https://menorpreco.notaparana.pr.gov.br/api/v1/produtos"
+		method="get">
+		<div>
+			<label for="termo">Pesquisar:</label> <input type="text" name="termo"
+				id="termo" />
+		</div>
+		<div>
+			<label for="raio">Raio:</label> <input type="range" min="1" max="20"
+				name="raio" id="raio" value="1"
+				oninput="displayRaio.innerText=value+'Km'"
+				onchange="displayRaio.innerText=value+'Km'"> <span
+				id="displayRaio"></span>
+		</div>
+		<div>
+			<label for="local">Local:</label> <input type="text" name="local"
+				id="local" />
+		</div>
+		<div>
+			<fieldset class="gllpLatlonPicker" id="custom_id">
+				<input type="text" class="gllpSearchField"> <input
+					type="button" class="gllpSearchButton" value="search">
+				<div class="gllpMap">Google Maps</div>
+				<input type="hidden" class="gllpLatitude" value="-25.429722" /> <input
+					type="hidden" class="gllpLongitude" value="-49.271944" /> <input
+					type="hidden" class="gllpZoom" value="12" />
+			</fieldset>
+		</div>
+		<div>
+			<input type="range" min="1" max="6" name="data" id="data" value="1"
+				oninput="trataData()" onchange="trataData()"> <span
+				id="displayData"></span>
+		</div>
+		<input type="submit" />
+	</form>
+	<div id="table">
+		<table id="resultado"></table>
+	</div>
+	<div id="nenhumResultado" style="display:none;">
+		<p>Nenhum resultado</p>
+	</div>
+	<script>
+		var _tr_ = document.createElement('tr'), _th_ = document.createElement('th'), _td_ = document.createElement('td');
+		function addAllColumnHeaders(arr, table) {
+		    var columnSet = [],
+		        tr = _tr_.cloneNode(false);
+		    for (var i=0, l=arr.length; i < l; i++) {
+		        for (var key in arr[i]) {
+		            if (arr[i].hasOwnProperty(key) && columnSet.indexOf(key)===-1) {
+		                columnSet.push(key);
+		                var th = _th_.cloneNode(false);
+		                th.appendChild(document.createTextNode(key));
+		                tr.appendChild(th);
+		            }
+		        }
+		    }
+		    table.append(tr);
+		    return columnSet;
+		}
+		function ploft(data) {
+			if(data.total > 0) {
+				$("#resultado").css("display", "block");
+				$("#nenhumResultado").css("display", "none");
+				
+				var table = $("#resultado");
+				table.html("");
+				columns = addAllColumnHeaders(data.produtos, table);
+				console.log(columns);
+				$.each(data.produtos, function(){
+					var tr = _tr_.cloneNode(false);
+					for (var j=0, maxj=columns.length; j < maxj ; ++j) {
+						var td = _td_.cloneNode(false);
+						cellValue = this[columns[j]];
+						if(typeof this[columns[j]] == 'object'){
+							td.appendChild(document.createTextNode(this[columns[j]].nm_emp || ''));
+							tr.appendChild(td);
+						} else {
+							td.appendChild(document.createTextNode(this[columns[j]] || ''));
+							tr.appendChild(td);
+						}
+					}
+					table.append(tr);
+				});
+			} else {
+				$("#resultado").css("display", "none");
+				$("#nenhumResultado").css("display", "block");
+			}
+		}
 		var frm = $('#frmPesquisa');
 		frm.submit(function (e) {
 
@@ -54,8 +111,7 @@
 				url: frm.attr('action'),
 				data: frm.serialize(),
 				success: function (data) {
-					console.log(data);
-					$("#resultado").html(data);
+					ploft(data);
 				},
 				error: function (data) {
 					console.log('An error occurred.');
@@ -63,105 +119,105 @@
 				},
 			});
 		});
-			var datas = {1:"15 dias",2:"7 dias",3:"1 dia",4:"12 horas",5:"6 horas",6:"1 hora"};
-			function trataData(){
-				document.getElementById("displayData").innerText = datas[document.getElementById("data").value];
-			}
-			data.oninput();
-			data.onchange();
+		var datas = {1:"15 dias",2:"7 dias",3:"1 dia",4:"12 horas",5:"6 horas",6:"1 hora"};
+		function trataData(){
+			document.getElementById("displayData").innerText = datas[document.getElementById("data").value];
+		}
+		data.oninput();
+		data.onchange();
 
-			raio.oninput();
-			raio.onchange();
-			getLocation();
-			function getLocation() {
-			    if (navigator && navigator.geolocation) {
-			        navigator.geolocation.getCurrentPosition(test);
-			    } else { 
-			        x.innerHTML = "Geolocation is not supported by this browser.";
-			    }
-			}
-			function test(position){
-				$(".gllpLatitude").val(position.coords.latitude);
-				$(".gllpLongitude").val(position.coords.longitude);
-				$(document).trigger("gllp_update_fields");
-				document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
-			}
-			var Geohash = {};
-			Geohash.base32 = '0123456789bcdefghjkmnpqrstuvwxyz';
-			Geohash.encode = function(lat, lon, precision) {
-			    // infer precision?
-			    if (typeof precision == 'undefined') {
-			        // refine geohash until it matches precision of supplied lat/lon
-			        for (var p=1; p<=12; p++) {
-			            var hash = Geohash.encode(lat, lon, p);
-			            var posn = Geohash.decode(hash);
-			            if (posn.lat==lat && posn.lon==lon) return hash;
-			        }
-			        precision = 12; // set to maximum
-			    }
+		raio.oninput();
+		raio.onchange();
+		getLocation();
+		function getLocation() {
+		    if (navigator && navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(test);
+		    } else { 
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
+		function test(position){
+			$(".gllpLatitude").val(position.coords.latitude);
+			$(".gllpLongitude").val(position.coords.longitude);
+			$(document).trigger("gllp_update_fields");
+			document.getElementById("local").value=(Geohash.encode(position.coords.latitude, position.coords.longitude, 7));
+		}
+		var Geohash = {};
+		Geohash.base32 = '0123456789bcdefghjkmnpqrstuvwxyz';
+		Geohash.encode = function(lat, lon, precision) {
+		    // infer precision?
+		    if (typeof precision == 'undefined') {
+		        // refine geohash until it matches precision of supplied lat/lon
+		        for (var p=1; p<=12; p++) {
+		            var hash = Geohash.encode(lat, lon, p);
+		            var posn = Geohash.decode(hash);
+		            if (posn.lat==lat && posn.lon==lon) return hash;
+		        }
+		        precision = 12; // set to maximum
+		    }
 
-			    lat = Number(lat);
-			    lon = Number(lon);
-			    precision = Number(precision);
+		    lat = Number(lat);
+		    lon = Number(lon);
+		    precision = Number(precision);
 
-			    if (isNaN(lat) || isNaN(lon) || isNaN(precision)) throw new Error('Invalid geohash');
+		    if (isNaN(lat) || isNaN(lon) || isNaN(precision)) throw new Error('Invalid geohash');
 
-			    var idx = 0; // index into base32 map
-			    var bit = 0; // each char holds 5 bits
-			    var evenBit = true;
-			    var geohash = '';
+		    var idx = 0; // index into base32 map
+		    var bit = 0; // each char holds 5 bits
+		    var evenBit = true;
+		    var geohash = '';
 
-			    var latMin =  -90, latMax =  90;
-			    var lonMin = -180, lonMax = 180;
+		    var latMin =  -90, latMax =  90;
+		    var lonMin = -180, lonMax = 180;
 
-			    while (geohash.length < precision) {
-			        if (evenBit) {
-			            // bisect E-W longitude
-			            var lonMid = (lonMin + lonMax) / 2;
-			            if (lon >= lonMid) {
-			                idx = idx*2 + 1;
-			                lonMin = lonMid;
-			            } else {
-			                idx = idx*2;
-			                lonMax = lonMid;
-			            }
-			        } else {
-			            // bisect N-S latitude
-			            var latMid = (latMin + latMax) / 2;
-			            if (lat >= latMid) {
-			                idx = idx*2 + 1;
-			                latMin = latMid;
-			            } else {
-			                idx = idx*2;
-			                latMax = latMid;
-			            }
-			        }
-			        evenBit = !evenBit;
+		    while (geohash.length < precision) {
+		        if (evenBit) {
+		            // bisect E-W longitude
+		            var lonMid = (lonMin + lonMax) / 2;
+		            if (lon >= lonMid) {
+		                idx = idx*2 + 1;
+		                lonMin = lonMid;
+		            } else {
+		                idx = idx*2;
+		                lonMax = lonMid;
+		            }
+		        } else {
+		            // bisect N-S latitude
+		            var latMid = (latMin + latMax) / 2;
+		            if (lat >= latMid) {
+		                idx = idx*2 + 1;
+		                latMin = latMid;
+		            } else {
+		                idx = idx*2;
+		                latMax = latMid;
+		            }
+		        }
+		        evenBit = !evenBit;
 
-			        if (++bit == 5) {
-			            // 5 bits gives us a character: append it and start over
-			            geohash += Geohash.base32.charAt(idx);
-			            bit = 0;
-			            idx = 0;
-			        }
-			    }
+		        if (++bit == 5) {
+		            // 5 bits gives us a character: append it and start over
+		            geohash += Geohash.base32.charAt(idx);
+		            bit = 0;
+		            idx = 0;
+		        }
+		    }
 
-			    return geohash;
-			};
-			$(document).ready(function() {
-			    // Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
-			    $(".gllpLatlonPicker").each(function() {
-			      $obj = $(document).gMapsLatLonPicker();
-
-			      $obj.params.strings.markerText = "Drag this Marker (example edit)";
-
-			      $obj.params.displayError = function(message) {
-			        console.log("MAPS ERROR: " + message); // instead of alert()
-			      };
-
-			      $obj.init( $(this) );
-			    });
-			  });
-		</script>
-	</body>
+		    return geohash;
+		};
+		$(document).ready(function() {
+			// Copy the init code from "jquery-gmaps-latlon-picker.js" and extend it here
+			$(".gllpLatlonPicker").each(function() {
+				$obj = $(document).gMapsLatLonPicker();
+				
+				$obj.params.strings.markerText = "Drag this Marker (example edit)";
+				
+				$obj.params.displayError = function(message) {
+				  console.log("MAPS ERROR: " + message); // instead of alert()
+				};
+				
+				$obj.init( $(this) );
+			});
+		});
+	</script>
+</body>
 </html>
