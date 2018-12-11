@@ -125,20 +125,21 @@ function replaceChords(text){
 }
 function outHtml(text){
 	var lines = text.split('\n');
-  var outHtml = '';
-  for(var i=0; i<lines.length; i++){
-  	var outLine = '';
-  	if(lines[i]){
-    	if(/^\s*=/.test(lines[i])){
-      	outLine = diver(per(lines[i].replace(/^\s*=\s*/, '')), 'comentario');
-      } else{
-    		outLine = lines[i].replace(/[^𝄀𝄆𝄇]*[^𝄀𝄆𝄇]/gm, function(v){return diver(v, 'acorde divTableCell');});
+	var outHtml = '';
+	for(var i=0; i<lines.length; i++){
+		var outLine = '';
+		if(lines[i]){
+			if(/^\s*=/.test(lines[i])){
+				outLine = diver(per(lines[i].replace(/^\s*=\s*/, '')));
+				outHtml += diver(outLine, 'comentario');
+			} else{
+				outLine = lines[i].replace(/[^𝄀𝄆𝄇]*[^𝄀𝄆𝄇]/gm, function(v){return diver(v, 'acorde divTableCell');});
 				outLine = outLine.replace(/[𝄀𝄆𝄇]+/gm, function(v){return diver(v, 'barra divTableCell');});
-      }
-    }
-    outHtml += diver(outLine, 'linha divTableRow');
-  }
-  document.getElementById('divOutHtml').innerHTML = outHtml;
+				outHtml += diver(outLine, 'linha divTableRow');
+			}
+		}
+	}
+	document.getElementById('divOutHtml').innerHTML = outHtml;
 }
 function diver(text, classe){
 	if(classe){
