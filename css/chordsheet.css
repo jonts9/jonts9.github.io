@@ -11,9 +11,11 @@
 .acorde {
   text-align: center;
   width: 10%;
+  font-size: 30px;
 }
 .barra {
   width: 1%;
+  font-size: 80px;
 }
 .comentario {
   margin-bottom: 5px;
@@ -27,8 +29,8 @@ pre {
 }
 @font-face {
   font-family: Boogaloo;
-  src: url(../Boogaloo.woff2);
+  src: url(../fonts/Boogaloo.woff2);
 }
-pre { 
+body { 
     font-family: "Boogaloo";
 }
