@@ -135,7 +135,7 @@ function outHtml(text){
 			} else{
 				outLine = lines[i].replace(/[^𝄀𝄆𝄇]*[^𝄀𝄆𝄇]/gm, function(v){return diver(v, 'acorde divTableCell');});
 				outLine = outLine.replace(/[𝄀𝄆𝄇]+/gm, function(v){return diver(v, 'barra divTableCell');});
-				outHtml += diver(outLine, 'linha divTableRow');
+				outHtml += diver(outLine, 'linha divTableRow'); 
 			}
 		}
 	}
