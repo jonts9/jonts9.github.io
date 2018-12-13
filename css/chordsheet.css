@@ -1,6 +1,6 @@
 .divTable{
 	display: table;
-  table-layout: fixed;
+	table-layout: fixed;
 }
 .divTableRow {
 	display: table-row;
@@ -9,28 +9,23 @@
 	display: table-cell;
 }
 .acorde {
-  text-align: center;
-  width: 10%;
-  font-size: 30px;
+	text-align: center;
 }
 .barra {
-  width: 1%;
-  font-size: 80px;
 }
 .comentario {
-  display: table-caption;
+	display: table-caption;
 }
 .barra, .acorde {
-  padding-right: 5px;
 }
 pre {
-  font-family: inherit;
-  font-size: inherit;
+	font-family: inherit;
+	font-size: inherit;
 }
 @font-face {
-  font-family: Boogaloo;
-  src: url(../fonts/Boogaloo.woff2);
+	font-family: Boogaloo;
+	src: url(../fonts/Boogaloo.woff2);
 }
 body { 
-    font-family: "Boogaloo";
+	font-family: "Boogaloo";
 }
