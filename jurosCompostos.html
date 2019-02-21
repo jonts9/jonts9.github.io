@@ -47,19 +47,19 @@ input {
   <div class="divTableBody">
     <div class="divTableRow">
       <div class="divTableCell">Valor financiado</div>
-      <div class="divTableCell"><input value="10000" id="valorFinanciado" onchange="c()" onKeyUp="c()" type="number"></div>
-    </div>
-    <div class="divTableRow">
-      <div class="divTableCell">Juros (%)</div>
-      <div class="divTableCell"><input value="0.99" id="juros" onchange="c()" onKeyUp="c()" type="number" step=".01"></div>
+      <div class="divTableCell"><input value="10750" id="valorFinanciado" onchange="c()" onKeyUp="c()" type="number"></div>
     </div>
     <div class="divTableRow">
       <div class="divTableCell">Meses</div>
-      <div class="divTableCell"><input value="60" id="meses" onchange="c()" onKeyUp="c()" type="number"></div>
+      <div class="divTableCell"><input value="36" id="meses" onchange="c()" onKeyUp="c()" type="number"></div>
+    </div>
+    <div class="divTableRow">
+      <div class="divTableCell">Juros (%)</div>
+      <div class="divTableCell"><input value="2.21" id="juros" onchange="c()" onKeyUp="c()" type="number" step=".01"></div>
     </div>
     <div class="divTableRow">
       <div class="divTableCell">Mensalidade</div>
-      <div class="divTableCell"><input id="mensalidade" disabled="" type="number"></div>
+      <div class="divTableCell"><input id="mensalidade" type="number"></div>
     </div>
     <div class="divTableRow">
       <div class="divTableCell">Total financiado</div>
@@ -70,7 +70,8 @@ input {
 
 <!-- End your code here -->
 
-<script>function c() {
+<script>
+function c() {
   var valorFinanciado;
   var juros;
   var meses;
@@ -87,4 +88,7 @@ input {
   //mensalidade=totalFinanciado/meses;
   $('#mensalidade').val(mensalidade);
   $('#totalFinanciado').val(totalFinanciado);
-}</script></body>
+}
+c();
+</script>
+</body>
