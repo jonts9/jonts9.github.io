@@ -82,8 +82,8 @@ function c() {
   juros=parseFloat($('#juros').val())/100;
   meses=parseFloat($('#meses').val());
   
-  totalFinanciado=Math.pow(juros+1, meses)*valorFinanciado;
   mensalidade = (valorFinanciado*juros)/(1-Math.pow(1/(1+juros),meses));
+  totalFinanciado=mensalidade*meses;
   $('#mensalidade').val(mensalidade);
   $('#totalFinanciado').val(totalFinanciado);
 }
