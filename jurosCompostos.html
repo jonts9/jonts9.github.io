@@ -78,7 +78,7 @@ input {
   var totalFinanciado;
 
   valorFinanciado=parseFloat($('#valorFinanciado').val());
-  juros=parseFloat($('#juros').val());
+  juros=parseFloat($('#juros').val())/100;
   meses=parseFloat($('#meses').val());
   
   totalFinanciado=Math.pow(juros/100+1, meses)*valorFinanciado;
