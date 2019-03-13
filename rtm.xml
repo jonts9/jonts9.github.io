@@ -23,6 +23,19 @@
 		</sy:updateFrequency>
 		<generator>https://wordpress.org/?v=5.1</generator>
 		<item>
+			<title>14/03</title>
+			<link></link>
+			<pubDate>Wed, 14 Mar 2019 03:00:26 +0000</pubDate>
+			<dc:creator><![CDATA[deborah]]></dc:creator>
+			<category><![CDATA[Presente Diário]]></category>
+
+			<guid isPermaLink="false">https://www.transmundial.com.br/?p=53953</guid>
+			<description><![CDATA[]]></description>
+			<enclosure
+				url="http://transmundial.com.br/podcasts/presente_diario/PD22/03_Mar_PD2019/20190314-PD22-RTM.mp3"
+				length="1507476" type="audio/mpeg" />
+		</item>
+		<item>
 			<title>Foco errado</title>
 			<link>https://www.transmundial.com.br/presente-diario/foco-errado-2/</link>
 			<pubDate>Wed, 13 Mar 2019 03:00:26 +0000</pubDate>
