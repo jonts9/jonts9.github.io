@@ -12,7 +12,7 @@
 		<link>https://www.transmundial.com.br</link>
 		<description>Para todo mundo ouvir</description>
 		<lastBuildDate>
-			Wed, 13 Mar 2019 11:05:09 +0000
+			Wed, 15 Mar 2019 11:05:09 +0000
 		</lastBuildDate>
 		<language>pt-BR</language>
 		<sy:updatePeriod>
@@ -25,7 +25,7 @@
 		<item>
 			<title>14/03</title>
 			<link></link>
-			<pubDate>Wed, 14 Mar 2019 03:00:26 +0000</pubDate>
+			<pubDate>Wed, 15 Mar 2019 03:00:26 +0000</pubDate>
 			<dc:creator><![CDATA[deborah]]></dc:creator>
 			<category><![CDATA[Presente Diário]]></category>
 
@@ -33,19 +33,6 @@
 			<description><![CDATA[]]></description>
 			<enclosure
 				url="http://transmundial.com.br/podcasts/presente_diario/PD22/03_Mar_PD2019/20190315-PD22-RTM.mp3"
-				length="1507476" type="audio/mpeg" />
-		</item>
-		<item>
-			<title>Foco errado</title>
-			<link>https://www.transmundial.com.br/presente-diario/foco-errado-2/</link>
-			<pubDate>Wed, 13 Mar 2019 03:00:26 +0000</pubDate>
-			<dc:creator><![CDATA[deborah]]></dc:creator>
-			<category><![CDATA[Presente Diário]]></category>
-
-			<guid isPermaLink="false">https://www.transmundial.com.br/?p=53953</guid>
-			<description><![CDATA[13 de Março de 2019 Leitura Bíblica: Salmo 73.1-17 Para mim, bom é estar perto de Deus (Sl 73.28a). No salmo 73, o autor fala a respeito de uma lição que aprendeu, introduzindo o assunto com a verdade que entendeu (“Certamente Deus é bom&#8230;”) e o reconhecimento de que o problema enfrentado na verdade nasceu [&#8230;]]]></description>
-			<enclosure
-				url="http://transmundial.com.br/podcasts/presente_diario/PD22/03_Mar_PD2019/20190313-PD22-RTM.mp3"
 				length="1507476" type="audio/mpeg" />
 		</item>
 	</channel>
