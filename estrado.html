@@ -9,29 +9,42 @@
 			text-align: center;
 			border-width: 2px;
 		}
+		.ripa{
+			width: 4.5mm;
+			height: 200mm;
+			background-color: brown;
+		}
+		.travessa{
+			width: 81mm;
+			height: 4mm;
+			background-color: #540;
+			z-index: -1;
+		}
+		.ripa, .travessa{
+			position: absolute;
+		}
+		.ripa > p{
+			content: "Email address: ";
+		    -webkit-transform: rotate(270deg);
+		    -moz-transform: rotate(270deg);
+		    -o-transform: rotate(270deg);
+		    -ms-transform: rotate(270deg);
+		    transform: rotate(270deg);
+		}
 	</style>
 </head>
 <body style="border-style: solid; width: 81mm; height: 200mm;">
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 5mm; position: absolute;"></div> 
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 18.3mm; position: absolute;"></div>
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 31.6mm; position: absolute;"></div>
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 44.9mm; position: absolute;"></div>
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 58.2mm; position: absolute;"></div>
-	<div
-		style="width: 4.5mm; height: 200mm; background-color: brown; margin-left: 71.5mm; position: absolute;"></div>
-	<div
-		style="width: 81mm; height: 4mm; background-color: #540; margin-top: 16mm; position: absolute; z-index: -1;"></div>
-	<div
-		style="width: 81mm; height: 4mm; background-color: #540; margin-top: 70mm; position: absolute; z-index: -1;"></div>
-	<div
-		style="width: 81mm; height: 4mm; background-color: #540; margin-top: 127mm; position: absolute; z-index: -1;"></div>
-	<div
-		style="width: 81mm; height: 4mm; background-color: #540; margin-top: 179mm; position: absolute; z-index: -1;"></div>
+	<div></div>
+	<div class="ripa" style="margin-left: 5mm;"><p>50</p></div> 
+	<div class="ripa" style="margin-left: 18.3mm;"><p>183</p></div>
+	<div class="ripa" style="margin-left: 31.6mm;"><p>316</p></div>
+	<div class="ripa" style="margin-left: 44.9mm;"><p>449</p></div>
+	<div class="ripa" style="margin-left: 58.2mm;"><p>582</p></div>
+	<div class="ripa" style="margin-left: 71.5mm;"><p>715</p></div>
+	<div class="travessa" style="margin-top: 16mm;"></div>
+	<div class="travessa" style="margin-top: 70mm;"></div>
+	<div class="travessa" style="margin-top: 127mm;"></div>
+	<div class="travessa" style="margin-top: 179mm;"></div>
 	<div
 		style="margin-top: 210mm; position: absolute;">
 		<table>
