@@ -1,7 +1,7 @@
 <html>
     <script>
         function extrairId(input){
-            fetch(input.value)
+            fetch(input.value, {mode: "no-cors"})
             .then(r => {
                 console.log(r);
                 if (!r.ok) {
