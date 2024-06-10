@@ -1,10 +1,21 @@
 <html>
     <script>
-        function extrairId(){
-            alert("asdf")
+        function extrairId(input){
+            fetch(input.value)
+            .then(r => {
+                console.log(r);
+                if (!r.ok) {
+                    throw new Error(`HTTP error ${r.status}`);
+                }
+                for (const [key, value] of r.headers) {
+                    console.log(`${key}: ${value}`);
+                }
+                console.log(r.url);
+            })
+            .catch(console.error);
         }
     </script>
     <body>
-        <input type="text" onchange="extrairId()" />
+        <input type="text" onchange="extrairId(this)" />
     </body>
 </html>
