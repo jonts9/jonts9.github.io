@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Timeline Vertical Corrigida</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #ccc;
+    }
+
+    .timeline {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      background-color: #ccc;
+    }
+
+    .year-block {
+      position: relative;
+      height: 98px;
+      border-bottom: 2px solid white;
+    }
+
+    .year-label {
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      font-size: 14px;
+      color: black;
+    }
+
+    .age-bar {
+      position: absolute;
+      left: 40%;
+      width: 20%;
+      background-color: #4caf50;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: white;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="timeline" id="timeline"></div>
+
+  <script>
+    const nascimentos = [
+      {
+        nome: "Jonatas",
+        data: new Date("1989-06-28 00:00:00")
+      },
+      {
+        nome: "Hellen",
+        data: new Date("1990-10-05 00:00:00")
+      },
+      {
+        nome: "Manu",
+        data: new Date("2017-03-05 00:00:00")
+      },
+      {
+        nome: "Levi",
+        data: new Date("2019-09-17 00:00:00")
+      },
+      {
+        nome: "Matias",
+        data: new Date("2022-10-29 00:00:00")
+      }
+    ];
+
+    nascimentos.forEach(element => {
+      element.ano = element.data.getFullYear();
+      element.diaDoAno = Math.floor((element.data - new Date(element.ano, 0, 1, 0, 0, 0)) / (1000 * 60 * 60 * 24));
+      //element.diaDoAno = element.data - new Date()
+      element.diaRatio = Math.round(element.diaDoAno / 365 * 100);
+    });
+
+    console.log(nascimentos);
+    const nascimento = new Date("1989-06-28");
+    const nascimentoAno = nascimento.getFullYear();
+
+    const startYear = 1989;
+    const endYear = 2100;
+    const yearHeight = 100; // altura de cada ano em px
+
+    // Posição do aniversário em relação ao ano
+    const birthdayDay = (nascimento - new Date(nascimentoAno, 0, 1)) / (1000 * 60 * 60 * 24);
+    const birthdayRatio = birthdayDay / 365; // aproximadamente 0.49
+
+    const timeline = document.getElementById("timeline");
+
+    // Criação dos blocos de ano
+    for (let year = startYear; year <= endYear; year++) {
+      const yearBlock = document.createElement("div");
+      yearBlock.className = "year-block";
+
+      const label = document.createElement("div");
+      label.className = "year-label";
+      label.textContent = year;
+      yearBlock.appendChild(label);
+
+      timeline.appendChild(yearBlock);
+      let index = 0;
+      nascimentos.forEach(n => {
+        if(n.ano <= year) {
+          const bar = document.createElement("div");
+          bar.className = "age-bar";
+          bar.style.top = `${n.diaRatio}px`;
+          bar.style.height = `${yearHeight-3}px`;
+          bar.textContent = year - n.ano + " anos";
+          bar.style.left = `${index * 70 + 50}px`;
+          yearBlock.append(bar);
+        }
+        index++;
+      });
+    }
+
+    // Agora adicionamos as barras por fora dos blocos
+    const totalYears = endYear - startYear + 1;
+    const timelineHeight = totalYears * yearHeight;
+
+    for (let i = 0; i <= endYear - nascimentoAno; i++) {
+      const bar = document.createElement("div");
+      bar.className = "age-bar";
+
+      const startY = Math.round((nascimentoAno + i - startYear + birthdayRatio) * yearHeight);
+      const barHeight = yearHeight; // sempre 1 ano
+
+      bar.style.top = `${startY}px`;
+      bar.style.height = `${barHeight-3}px`;
+      bar.textContent = `${i} ${i === 1 ? "ano" : "anos"}`;
+
+      //timeline.appendChild(bar);
+    }
+  </script>
+</body>
+</html>
